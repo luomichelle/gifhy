@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homework Six | Michelle Luo</title>
+	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<body>
+
+  <!-- Jumbotron for Title -->
+  <div class="jumbotron">
+    <h1 class="text-center"><strong>Do Something Fun</strong></h1>
+  </div>
+<div class="navcontainer">
+    <div id="animalsView"></div>
+</div>
+
+    <div id="buttonsView"></div>
+
+    <form id="animal-form">
+    <label for="animal-input"><h3>Type something Below</h3></label>
+    <input type="text" id="animal-input"><br>
+    <input id="addAnimal" type="submit" value="Search">
+    <div id="displayAnimalInfo">
+    
+    <!-- Button triggers new movie to be added -->
+  </form>
+
+ <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script type="text/javascript">
+
+    var animals = ['bunny', 'pikachu', 'justinbieber', 'Lion'];
+
+    function displayAnimalInfo(){}
+
+        $('body').on('click', '.animal', function() {
+        var animal  = $(this).attr("data-name");
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+            $("#displayAnimalInfo").empty();
+
+                $.ajax({url: queryURL,method: 'GET'}).done(function(response) {
+
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+
+                    var pictureDiv = $('<div>');
+
+                    var p = $('<p>').text("Rating: " + results[i].rating);
+
+                    var pictureImage = $('<img>');
+                    pictureImage.attr("src", results[i].images.fixed_height_still.url);
+                    pictureImage.attr("data-state", "still");
+                    pictureImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    pictureImage.attr("data-animate", results[i].images.fixed_height.url);
+                    pictureImage.addClass("pictureImage")
+                    pictureDiv.append(p);
+                    pictureDiv.append(pictureImage);
+                    $('#displayAnimalInfo').prepend(pictureDiv);
+
+    }
+
+                    $('img').on('click', function(e) {
+                    console.log(pictureImage)
+                var state = $(this).attr("data-state");
+                 if (state === "still"){
+                $(this).attr("src", $(this).data("animate"));
+                $(this).attr("data-state", "animate");
+            }else{
+                $(this).attr("src", $(this).data("still"));
+                $(this).attr("data-state", "still");
+            } 
+});
+});
+});
+
+
+
+    function renderButtons(){ 
+        $('#buttonsView').empty();
+        for (var i = 0; i < animals.length; i++){
+            var a = $('<button>') // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
+            a.addClass('animal'); // Added a class 
+            a.attr('data-name', animals[i]); // Added a data-attribute
+            a.text(animals[i]); // Provided the initial button text
+            $('#buttonsView').append(a); // Added the button to the HTML
+        }
+    }
+    $('#addAnimal').on('click', function(){
+
+        // This line of code will grab the input from the textbox
+        var animal = $('#animal-input').val().trim();
+
+        // The movie from the textbox is then added to our array
+        animals.push(animal);
+        
+        // Our array then runs which handles the processing of our movie array
+        renderButtons();
+
+        // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
+        return false;
+    })
+
+    renderButtons();
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
