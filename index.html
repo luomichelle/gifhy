@@ -12,20 +12,22 @@
   <div class="jumbotron">
     <h1 class="text-center"><strong>Do Something Fun</strong></h1>
   </div>
-<div class="navcontainer">
-    <div id="animalsView"></div>
+  <div class="bodycontainer">
+
+        <div id="buttonsView"></div>
+        <div id="animalsView"></div>
+  </div>
+
+  <div class="sideContainer">
+    <form id="animal-form">
+    <label for="animal-input"><h3>Wanna Add more?</h3></label>
+    <input type="text" id="animal-input"><br>
+    <input id="addAnimal" type="submit" value="Add More">
+    <div id="displayAnimalInfo">
+  </form>
 </div>
 
-    <div id="buttonsView"></div>
 
-    <form id="animal-form">
-    <label for="animal-input"><h3>Type something Below</h3></label>
-    <input type="text" id="animal-input"><br>
-    <input id="addAnimal" type="submit" value="Search">
-    <div id="displayAnimalInfo">
-    
-    <!-- Button triggers new movie to be added -->
-  </form>
 
     <script type="text/javascript">
 
@@ -45,7 +47,7 @@
 
                 for (var i = 0; i < results.length; i++) {
 
-                    var pictureDiv = $('<div>');
+                    var pictureDiv = $('<div-container>');
 
                     var p = $('<p>').text("Rating: " + results[i].rating);
 
