@@ -10,32 +10,30 @@
 
   <!-- Jumbotron for Title -->
   <div class="jumbotron">
-    <h1 class="text-center"><strong>Do Something Fun</strong></h1>
-  </div>
-  <div class="bodycontainer">
-
-        <div id="buttonsView"></div>
-        <div id="animalsView"></div>
+    <h1 class="text-center"><strong>Find My Giphy</strong></h1>
   </div>
 
   <div class="sideContainer">
     <form id="animal-form">
-    <label for="animal-input"><h3>Wanna Add more?</h3></label>
     <input type="text" id="animal-input"><br>
-    <input id="addAnimal" type="submit" value="Add More">
-    <div id="displayAnimalInfo">
+    <input id="addAnimal" type="submit" value="Add a Giphy Button">
   </form>
 </div>
-
+  <div class="bodycontainer">
+        <div id="buttonsView"></div>
+        <div id="animalsView"></div>
+  </div>
+    <div id="displayAnimalInfo">
 
 
     <script type="text/javascript">
 
-    var animals = ['bunny', 'pikachu', 'justinbieber', 'Lion'];
+    var animals = ['bunny', 'pikachu', 'justinbieber', 'Lion', "dog", "cat", "rabbit", "hamster", "skunk", "goldfish", "bird", "ferret", "turtle", "sugar glider", "chinchilla", "hedgehog", "hermit crab", "gerbil", "pygmy goat", "chicken", "capybara", "teacup pig", "serval", "salamander", "frog"];
 
     function displayAnimalInfo(){}
 
         $('body').on('click', '.animal', function() {
+
         var animal  = $(this).attr("data-name");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
 
