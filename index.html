@@ -1,117 +1,108 @@
 <!DOCTYPE html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Homework Six | Michelle Luo</title>
-	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<body>
+<html lang="en">
 
-  <!-- Jumbotron for Title -->
-  <div class="jumbotron">
-    <h1 class="text-center"><strong>Do Something Fun</strong></h1>
-  </div>
-  <div class="bodycontainer">
+  <head>
 
-        <div id="buttonsView"></div>
-        <div id="animalsView"></div>
-  </div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <div class="sideContainer">
-    <form id="animal-form">
-    <label for="animal-input"><h3>Wanna Add more?</h3></label>
-    <input type="text" id="animal-input"><br>
-    <input id="addAnimal" type="submit" value="Add More">
-    <div id="displayAnimalInfo">
-  </form>
-</div>
+    <title>今天吃什么！</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
 
 
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
+    <!-- Custom styles for this template -->
+    <link href="css/new-age.min.css" rel="stylesheet">
+  </head>
 
-    <script type="text/javascript">
+  <body id="page-top" style="background-color:#fdcc52">
 
-    var animals = ['bunny', 'pikachu', 'justinbieber', 'Lion'];
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">今天吃什么 - Orange County</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    function displayAnimalInfo(){}
-
-        $('body').on('click', '.animal', function() {
-        var animal  = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-            $("#displayAnimalInfo").empty();
-
-                $.ajax({url: queryURL,method: 'GET'}).done(function(response) {
-
-                var results = response.data;
-
-                for (var i = 0; i < results.length; i++) {
-
-                    var pictureDiv = $('<div-container>');
-
-                    var p = $('<p>').text("Rating: " + results[i].rating);
-
-                    var pictureImage = $('<img>');
-                    pictureImage.attr("src", results[i].images.fixed_height_still.url);
-                    pictureImage.attr("data-state", "still");
-                    pictureImage.attr("data-still", results[i].images.fixed_height_still.url);
-                    pictureImage.attr("data-animate", results[i].images.fixed_height.url);
-                    pictureImage.addClass("pictureImage")
-                    pictureDiv.append(p);
-                    pictureDiv.append(pictureImage);
-                    $('#displayAnimalInfo').prepend(pictureDiv);
-
-    }
-
-                    $('img').on('click', function(e) {
-                    console.log(pictureImage)
-                var state = $(this).attr("data-state");
-                 if (state === "still"){
-                $(this).attr("src", $(this).data("animate"));
-                $(this).attr("data-state", "animate");
-            }else{
-                $(this).attr("src", $(this).data("still"));
-                $(this).attr("data-state", "still");
-            } 
-});
-});
-});
-
-
-
-    function renderButtons(){ 
-        $('#buttonsView').empty();
-        for (var i = 0; i < animals.length; i++){
-            var a = $('<button>') // This code $('<button>') is all jQuery needs to create the beginning and end tag. (<button></button>)
-            a.addClass('animal'); // Added a class 
-            a.attr('data-name', animals[i]); // Added a data-attribute
-            a.text(animals[i]); // Provided the initial button text
-            $('#buttonsView').append(a); // Added the button to the HTML
-        }
-    }
-    $('#addAnimal').on('click', function(){
-
-        // This line of code will grab the input from the textbox
-        var animal = $('#animal-input').val().trim();
-
-        // The movie from the textbox is then added to our array
-        animals.push(animal);
-        
-        // Our array then runs which handles the processing of our movie array
-        renderButtons();
-
-        // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
-        return false;
-    })
-
-    renderButtons();
-
-
-
-
-
-
-</script>
-</body>
+    <section class="download bg-primary text-center" id="download">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mx-auto">
+            <h2 class="section-heading">今天在OC吃什么~</h2>
+          </div>
+          <div class="col-md-8 mx-auto ptop15">
+            <div class="ciclemeTODAY">
+              <div id="pickfoodButton" class="icon">吃WAT
+                  <ul class="menu">
+                    <li class="spread">
+                          <a class="unit" href="#">今</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">天</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">准</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">备</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">吃</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">什</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">么</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#">？</a>
+                    </li>
+                    
+                    <li class="spread">
+                          <a class="unit" href="#"></a>
+                    </li>
+                    
+                  </ul>
+                </div>
+            </div>
+            <div id="finalPickfoodName"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="js/new-age.min.js"></script>
+    <script src="js/general.js"></script>
+  </body>
 
 </html>
